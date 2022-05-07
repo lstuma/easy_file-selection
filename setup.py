@@ -14,7 +14,8 @@ setuptools.setup(
     url='https://github.com/lstuma/easy_file_selector',
     packages=setuptools.find_packages(),
     install_requires=['setuptools',
-                      'tkinter'
+                      'tk',
+                      'TCL'
                       ],
     classifiers=[
         'Development Status :: 3 - Alpha',
