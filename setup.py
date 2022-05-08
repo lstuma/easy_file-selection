@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name='easy_file_manager',
-    version='0.2',
+    version='0.3',
     author='Lukas Stockmann',
     author_email='g.lstuma@gmail.com',
     description='Package to easily let a user select multiple files for further use',
