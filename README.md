@@ -2,9 +2,7 @@
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
 
 Lets users conveniently choose multiple files.
-
-##Installation
-
+## Installation
 The program can be installed from PyPi or GitHub
 ```
 # From PyPi
