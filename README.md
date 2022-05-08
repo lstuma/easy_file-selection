@@ -5,12 +5,12 @@ Lets users conveniently choose multiple files.
 ## Usage
 ### Python Module
 ```python
-from easy_file_selection import EasyFileSelect()
+from easy_file_manager import EasyFileSelect()
 
 # Instantiate EasyFileSelect object
-file_selector = EasyFileSelect()
+file_manager = EasyFileSelect()
 
 # Open file selection: Returns filepaths
-filepaths = file_selector.file_selection()
+filepaths = file_manager.file_selection()
 
 ```
