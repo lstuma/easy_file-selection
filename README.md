@@ -1,7 +1,7 @@
 # easy_file_selection
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
 
-This module can be used to conveniently let users choose multiple files.
+Lets users conveniently choose multiple files.
 ## Usage
 ### Python Module
 ```python
