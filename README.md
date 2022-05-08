@@ -1,3 +1,14 @@
-# easy_file_selector
-Easy file selector is a very simple way of letting users pick a single or multiple files.
+# easy_file_selection
+This module can be used to conveniently let users pick files.
+## Usage
+### Python Module
+```python
+from easy_file_selection import EasyFileSelect()
 
+# Instantiate EasyFileSelect object
+file_selector = EasyFileSelect()
+
+# Open file selection: Returns filepaths
+filepaths = file_selector.file_selection()
+
+```
