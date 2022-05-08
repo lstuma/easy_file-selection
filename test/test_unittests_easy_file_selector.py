@@ -1,6 +1,6 @@
 import unittest
 
-from easy_file_selector.easy_file_selector import EasyFileSelect
+from easy_file_manager.easy_file_manager import EasyFileSelect
 
 
 class TestStringMethod(unittest.TestCase):

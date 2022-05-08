@@ -14,18 +14,19 @@ setuptools.setup(
     url='https://github.com/lstuma/easy_file_selector',
     packages=setuptools.find_packages(),
     install_requires=['setuptools',
-                      'tkinter'
+                      'tk',
+                      'TCL'
                       ],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
-        'Operating System :: OS Indep0ent',
+        'Operating System :: OS Independent',
     ],
     python_requires='>=3.7',
     entry_points={
         'console_scripts': [
-            'easy_file_selector=easy_file_selector.easy_file_selector:main',
+            'easy_file_manager=easy_file_manager.easy_file_manager:main',
         ]
     }
 )
