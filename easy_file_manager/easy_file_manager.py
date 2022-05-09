@@ -1,6 +1,8 @@
 import tkinter as tk
 import tkinter.filedialog
+import tkinter.ttk as ttk
 from typing import Optional
+
 
 class EasyFileSelect(object):
 
@@ -28,17 +30,18 @@ class EasyFileSelect(object):
         self.user_done = None
 
     def file_selection(self, title: str = 'File selection', button_labels: Optional[list] = None,
-                       preload: list = list(), height=720, width=625, resizable=False):
+                       preload: list = list(), height=700, width=625, resizable=False, theme: Optional[str] = None):
         """
         Opens the file selection
 
         :param title: An optional title of the file-selection window
         :param button_labels: An optional list of 4 strings containing labels to all the different buttons
-        :param preload: A list of strings of filepaths which are already loaded into the file selection
+        :param preload: A list of strings (filepaths) which will be preloaded into the file selection
         :param height: The height of the window
         :param width: The width of the window
         :param resizable: Whether the window should be resizable
-        :return:
+        :param theme: Theme of the window
+        :return: A list containing the chosen files' filepaths
         """
 
         # If button_labels is empty, set them to default ones
@@ -69,19 +72,23 @@ class EasyFileSelect(object):
         # Create geometry to make placing of objects easier
         root.geometry(f'{height}x{width}')
 
+        # Create ttk style object
+        style = ttk.Style()
+
+        # Set theme of ttk
+        style.theme_use(theme)
+
         # frames to place buttons, text boxes, etc. in
         frames: dict = dict()
-        main_frame = tk.Frame(root)
+        main_frame = ttk.Frame(root)
         main_frame.pack(expand=True, side='right')
 
         # Create text box
         for i in range(0, 20):
             # Create text box
-            box = tk.Text(root,
-                          width=50,
-                          height=2)
+            box = ttk.Entry(root)
             # Pack text box to window
-            box.pack()
+            box.pack(ipadx=140, ipady=8)
             # Bind the text box mousewheel-event to the scroll() function
             box.bind('<MouseWheel>', self.scroll)
             # Configure text box
@@ -95,11 +102,9 @@ class EasyFileSelect(object):
         # Create buttons
         for i in range(0, 4):
             # Create button
-            button = tk.Button(root,
-                               width=30,
-                               height=2)
+            button = ttk.Button(root)
             # Change button position
-            button.place(x=405, y=(40 * i))
+            button.place(x=405, y=(49 * i), width=220, height=50)
             # Give button the right label
             button.config(text=button_labels[i])
             # Bind button to its corresponding function
@@ -109,7 +114,7 @@ class EasyFileSelect(object):
             self.buttons.append(button)
 
         # Update widgets
-        self.update_wdgs()
+        self.update_widgets()
 
         # Draw the window repeatedly
         while not self.user_done:
@@ -137,13 +142,13 @@ class EasyFileSelect(object):
         return self.filepaths
 
     # Updating important widgets
-    def update_wdgs(self, event=None):
+    def update_widgets(self, event=None):
         for box in self.text_boxes:
             i = self.text_boxes.index(box)
             # Enable text box for writing through config
             box.config(state='normal')
             # Remove previous text of text box
-            box.delete(1.0, 'end')
+            box.delete(0, 'end')
             # Check if there is a filepath matching the text_box
             if len(self.filepaths) > i + self.scroll_offset:
                 # Change text box's text to filepath
@@ -153,7 +158,7 @@ class EasyFileSelect(object):
                 box.insert('end', ' ')
 
             # Add the box's index number
-            box.insert(1.0, f'{i+self.scroll_offset+1} ')
+            box.insert(0, f'{i + self.scroll_offset + 1} ')
 
             # Disable writing for the text box again
             box.config(state='disabled')
@@ -169,13 +174,13 @@ class EasyFileSelect(object):
         # Add filepaths to the filepaths list
         self.filepaths.extend(filepaths)
         # Update widgets
-        self.update_wdgs()
+        self.update_widgets()
 
     # Remove a file from the file-selection
     def remove_file(self, event):
         # Debug statement
         if self.debug:
-            print('DEBUG: Removing one element from filepaths')
+            print('DEBUG: Removing element from filepaths list')
         # If element is out of bounds it will give an error
         try:
             # If the event caller is in text boxes, remove the filepath contained in the text_box
@@ -188,11 +193,11 @@ class EasyFileSelect(object):
         except Exception as e:
             # Debug statement
             if self.debug:
-                print(f'WARNING: Removal of filepath element was excepted: {e}')
+                print(f'WARNING: Exception during removal of element from filepaths list: {e}')
             return
 
         # Update widgets
-        self.update_wdgs()
+        self.update_widgets()
 
     def scroll(self, event):
         # Check which direction the user is scrolling
@@ -209,20 +214,20 @@ class EasyFileSelect(object):
         # Reset scroll offset
         self.scroll_offset = 0
         # Update widgets
-        self.update_wdgs()
+        self.update_widgets()
 
     # Scrolling upwards in the file-selection
     def scroll_up(self, event=None):
         if self.scroll_offset > 0:
             self.scroll_offset -= 1
             # Update widgets
-            self.update_wdgs()
+            self.update_widgets()
 
     # Scrolling downward in the file-selection
     def scroll_down(self, event=None):
         self.scroll_offset += 1
         # Update widgets
-        self.update_wdgs()
+        self.update_widgets()
 
 
 def main():
