@@ -3,21 +3,24 @@
 
 Lets users conveniently choose multiple files.
 ## Installation
-The program can be installed from PyPi or GitHub
+The program can be installed from PyPi, GitHub or GitLab
 ```
 # From PyPi
 python -m pip install easy-file-manager
 
 # From GitHub.com
 python -m pip install git+https://github.com/lstuma/easy_file_manager
+
+# From GitLab.com
+python -m pip install git+https://gitlab.com/lstuma/easy_file_manager
 ```
 ## Usage
 ### Python Module
 ```python
-from easy_file_manager import EasyFileSelect()
+from easy_file_manager import easy_file_manager
 
 # Instantiate EasyFileSelect object
-file_manager = EasyFileSelect()
+file_manager = easy_file_manager.EasyFileSelect()
 
 # Open file selection: Returns filepaths
 filepaths = file_manager.file_selection()
