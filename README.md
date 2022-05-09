@@ -3,7 +3,6 @@
 
 Lets users conveniently choose multiple files.
 ## Installation
-The program can be installed from PyPi, GitHub or GitLab
 ```
 # From PyPi
 python -m pip install easy-file-manager
